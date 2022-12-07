@@ -101,14 +101,17 @@ class Form extends Component {
             onChange={ onInputChange }
           />
         </label>
-        <button
-          type="button"
-          data-testid="save-button"
-          disabled={ isSaveButtonDisabled }
-          onClick={ onSaveButtonClick }
-        >
-          Salvar
-        </button>
+        <div>
+          <button
+            name="isSaveButtonDisabled"
+            type="button"
+            data-testid="save-button"
+            disabled={ isSaveButtonDisabled }
+            onClick={ onSaveButtonClick }
+          >
+            Salvar
+          </button>
+        </div>
       </form>
     );
   }
