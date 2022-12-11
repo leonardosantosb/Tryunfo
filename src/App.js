@@ -13,6 +13,26 @@ class App extends React.Component {
     cardRare: '',
     cardTrunfo: false,
     isSaveButtonDisabled: true,
+    registeredCards: [],
+  };
+
+  onSaveButtonClick = () => {
+    const { cardName, cardDescription, cardAttr1, cardAttr2,
+      cardAttr3, cardImage, cardRare, cardTrunfo } = this.state;
+
+    this.setState(({ registeredCards }) => ({
+      registeredCards: [...registeredCards, cardAttr1, cardAttr2,
+        cardAttr3, cardDescription, cardImage, cardName, cardRare, cardTrunfo],
+    }));
+    this.setState({
+      cardName: '',
+      cardDescription: '',
+      cardImage: '',
+      cardAttr1: '0',
+      cardAttr2: '0',
+      cardAttr3: '0',
+      cardRare: 'normal',
+    });
   };
 
   validationFields = () => {
@@ -64,6 +84,8 @@ class App extends React.Component {
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
           isSaveButtonDisabled={ isSaveButtonDisabled }
+          onSaveButtonClick={ this.onSaveButtonClick }
+
         />
 
         <Card
