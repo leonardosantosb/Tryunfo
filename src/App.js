@@ -19,10 +19,13 @@ class App extends React.Component {
 
   onSaveButtonClick = () => {
     const { cardName, cardDescription, cardAttr1, cardAttr2,
-      cardAttr3, cardImage, cardRare, cardTrunfo, hasTrunfo } = this.state;
+      cardAttr3, cardImage, cardRare, cardTrunfo } = this.state;
 
-    if (cardTrunfo) {
-      this.setState({ [hasTrunfo]: true });
+    if (cardTrunfo === 'on') {
+      this.setState({
+        hasTrunfo: true,
+        cardTrunfo: false,
+      });
     }
 
     this.setState(({ registeredCards }) => ({
@@ -39,15 +42,6 @@ class App extends React.Component {
       cardRare: 'normal',
     });
   };
-
-  // validationCheck = () => {
-  //   const { cardTrunfo, hasTrunfo } = this.state;
-  //   if (cardTrunfo === 'on') {
-  //     this.setState({
-  //       [hasTrunfo]: true,
-  //     });
-  //   }
-  // };
 
   validationFields = () => {
     const { cardName, cardDescription, cardImage, cardRare,
@@ -83,7 +77,7 @@ class App extends React.Component {
 
   render() {
     const { cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3,
-      cardImage, cardRare, cardTrunfo, isSaveButtonDisabled } = this.state;
+      cardImage, cardRare, cardTrunfo, isSaveButtonDisabled, hasTrunfo } = this.state;
     return (
       <div>
         <h1>Tryunfo</h1>
@@ -99,6 +93,7 @@ class App extends React.Component {
           cardTrunfo={ cardTrunfo }
           isSaveButtonDisabled={ isSaveButtonDisabled }
           onSaveButtonClick={ this.onSaveButtonClick }
+          hasTrunfo={ hasTrunfo }
 
         />
 
