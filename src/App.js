@@ -14,11 +14,16 @@ class App extends React.Component {
     cardTrunfo: false,
     isSaveButtonDisabled: true,
     registeredCards: [],
+    hasTrunfo: '',
   };
 
   onSaveButtonClick = () => {
     const { cardName, cardDescription, cardAttr1, cardAttr2,
-      cardAttr3, cardImage, cardRare, cardTrunfo } = this.state;
+      cardAttr3, cardImage, cardRare, cardTrunfo, hasTrunfo } = this.state;
+
+    if (cardTrunfo) {
+      this.setState({ [hasTrunfo]: true });
+    }
 
     this.setState(({ registeredCards }) => ({
       registeredCards: [...registeredCards, cardAttr1, cardAttr2,
@@ -34,6 +39,15 @@ class App extends React.Component {
       cardRare: 'normal',
     });
   };
+
+  // validationCheck = () => {
+  //   const { cardTrunfo, hasTrunfo } = this.state;
+  //   if (cardTrunfo === 'on') {
+  //     this.setState({
+  //       [hasTrunfo]: true,
+  //     });
+  //   }
+  // };
 
   validationFields = () => {
     const { cardName, cardDescription, cardImage, cardRare,
