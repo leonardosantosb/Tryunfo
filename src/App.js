@@ -28,11 +28,19 @@ class App extends React.Component {
       });
     }
 
+    const newCard = {
+      cardName,
+      cardImage,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardDescription,
+      cardRare,
+      cardTrunfo,
+    };
+
     this.setState(({ registeredCards }) => ({
-      registeredCards: [...registeredCards, cardAttr1, cardAttr2,
-        cardAttr3, cardDescription, cardImage, cardName, cardRare, cardTrunfo],
-    }));
-    this.setState({
+      registeredCards: [...registeredCards, newCard],
       cardName: '',
       cardDescription: '',
       cardImage: '',
@@ -40,7 +48,7 @@ class App extends React.Component {
       cardAttr2: '0',
       cardAttr3: '0',
       cardRare: 'normal',
-    });
+    }));
   };
 
   validationFields = () => {
@@ -77,7 +85,8 @@ class App extends React.Component {
 
   render() {
     const { cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3,
-      cardImage, cardRare, cardTrunfo, isSaveButtonDisabled, hasTrunfo } = this.state;
+      cardImage, cardRare, cardTrunfo, isSaveButtonDisabled, hasTrunfo,
+      registeredCards } = this.state;
     return (
       <div>
         <h1>Tryunfo</h1>
@@ -108,6 +117,21 @@ class App extends React.Component {
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
         />
+        <ul>
+          {
+            registeredCards.map((card) => (
+
+              <li key={ card.cardName }>
+                <Card
+                  {
+                    ...card
+                  }
+
+                />
+              </li>
+            ))
+          }
+        </ul>
       </div>
     );
   }
